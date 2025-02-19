@@ -11,8 +11,8 @@ body {
 
 .container-reg {
     margin: auto;
-    max-width: 600px;
-    width: 80%;
+    max-width: 500px;
+    width: 50%;
     margin: 50px auto;
     padding: 25px 50px;
     background-color: rgba(255, 255, 255, 0.952);
@@ -22,8 +22,8 @@ body {
 .input-box{
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 8px;
-    padding: 10px 0;
+    margin-bottom: 5px;
+    padding: 6px 0;
     justify-content: space-evenly;
     align-items: center;
     background-color: #c4d4d4;
@@ -84,4 +84,8 @@ label{
 
  #cancel-btn{
     background-color: rgb(236, 65, 99);
+ }
+
+ select{
+    width: 54%
  }

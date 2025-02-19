@@ -11,13 +11,11 @@ $sect = "";
 $e_date = "";
 
 require "../db_config.php";
-// echo $_SERVER['REQUEST_METHOD'];
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-    // echo $_SERVER['REQUEST_METHOD'];
-    // echo $_GET['id'];
 
+    //checks if the id is passed in the get request
     if(!isset($_GET["id"])){
         header("location: ../index.php");
         exit();}
