@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // echo $_GET['id'];
 
     if(!isset($_GET["id"])){
-        header("location: ../read_staff.php");
+        header("location: ./read_staff.php");
         exit();}
 
         $id = $_GET["id"];

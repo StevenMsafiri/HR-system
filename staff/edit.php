@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     //checks if the id is passed in the get request
     if(!isset($_GET["id"])){
-        header("location: ../read_staff.php");
+        header("location: ./read_staff.php");
         exit();}
 
         $id = $_GET["id"];
