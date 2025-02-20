@@ -46,8 +46,8 @@
                             <tr class='horizontal'>
                             <td> $row[id]</td>
                             <td> $row[first_name]</td>
-                            <td>$row[last_name]</td>
-                            <td> $row[second_name]</td>
+                            <td>$row[second_name]</td>
+                            <td> $row[last_name]</td>
                             <td> $row[birth_date]</td>
                             <td> $row[qualification]</td>
                             <td> $row[department]</td>

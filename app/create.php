@@ -17,17 +17,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $section = $_POST["Section"];
 
     try {
+
         $query = "INSERT INTO Employees (first_name, second_name, last_name, birth_date, qualification, position, department, employedDate, section) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $conn->prepare($query);
         $res = $stmt->execute([$firstName, $secondName, $lastName, $birthdate, $qualification, $position, $department, $employedDate, $section]);
 
+        if($position == 'Manager' || $position == 'Supervisor'){
+
+            $query = " SELECT id FROM Employees WHERE position = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$position]);
+            $id = $stmt->fetch(PDO::FETCH_COLUMN);
+            echo $id;
+
+            switch($position){
+                case "Manager":
+                    $query = "UPDATE departments SET manager_id = ? WHERE name = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute([$id, $department]);
+                    break;
+
+                case "Supervisor":
+                    $query = "UPDATE sections SET supervisor_id = ? WHERE name = ?";
+                    $stmt = $conn->prepare($query);
+                    $stmt->execute([$id, $section]);
+                    break;
+
+            }
+        }
+
         $conn = null;
         $stmt = null;
-
         header("Location: ../staffs.php");
 
-        die();
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
@@ -80,12 +103,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="input-box">
                     <label for="Qualification:">Qualification:</label>
                     <select type="text" name="Qualification">
-                        <option value="certificate" class="value">Certificate</option>
-                        <option value="diploma" class="value">Diploma</option>
-                        <option value="bachelor" class="value">Bachelor</option>
-                        <option value="masters" class="value">Masters</option>
+                        <option value="" selected>Select qualification</option>
+                        <option value="Certificate" class="value">Certificate</option>
+                        <option value="Diploma" class="value">Diploma</option>
+                        <option value="Bachelor" class="value">Bachelor</option>
+                        <option value="Masters" class="value">Masters</option>
                         <option value="PhD" class="value">PhD</option>
-                        <option value="other" class="value">Other</option>
+                        <option value="Other" class="value">Other</option>
                     </select>
                 </div>
 
@@ -94,17 +118,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" name="Birthdate" id="" placeholder="birthdate" required>
                 </div>
 
-
-                <div class="input-box">
-                    <label for="Position:"> Position:</label>
-                    <input type="text" name="Position" id="" placeholder="position" required>
-                </div>
-
                 <div class="input-box">
                     <label for="Department">Department:</label>
                     <?php
                     if (!empty($departments)) {
-                        echo '<select name="Department" required>';
+                        echo '<select name="Department" id="dept" required>';
                         foreach ($departments as $dept) {
                             echo '<option value="' . htmlspecialchars($dept) . '">' . htmlspecialchars($dept) . '</option>';
                         }
@@ -116,13 +134,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="input-box">
-                    <label for="Section:">Section:</label>
-                    <input type="text" name="Section" id="" placeholder="section" required>
+                    <label for="Section">Section:</label>
+                    <select name="Section" id="section" required>
+                        <option value="">Select a section</option>
+                    </select>
                 </div>
 
                 <div class="input-box">
+                    <label for="Position:"> Position:</label>
+                    <select type="text" name="Position" id="pos">
+                        <option value="" selected>Select a position</option>
+                        <option value="Manager" class="value">Manager</option>
+                        <option value="Supervisor" class="value">Supervisor</option>
+                        <option value="Other" >Other</option>
+                    </select>
+                </div>
+
+                <div class="input-box" id="super">
                     <label for="Supervisor:">Supervisor:</label>
-                    <input type="text" name="Supervisor" id="" placeholder="supervisor" required>
+                    <input type="text" name="Supervisor" id="leader" placeholder="supervisor">
                 </div>
 
                 <div class="input-box">
@@ -140,3 +170,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
+<script src="../js/jquery-3.7.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dept').on('change', function() {
+            var department = $(this).val()
+    
+            if (department) {
+                $.getJSON('../includes/getsections.php', {
+                    department: department
+                }, function(data) {
+                    $('#section').empty(); // Clear existing options
+                    $('#section').append('<option value="">Select a section</option>'); // Default option
+
+                    $.each(data, function(key, value) {
+                        $('#section').append('<option value="' + value + '">' + value + '</option>');
+                    });
+                });
+            } else {
+                $('#section').empty();
+                $('#section').append('<input type="text" name="Section">');
+            }
+
+        });
+
+
+        $('#pos').on('change', function(){
+            var position = $(this).val()
+            var section = $('#section').val()
+            if(position == "Manager"|| position == "Supervisor"){
+                $('#super').hide()
+
+            }else{
+                $('#super').show()
+                $.getJSON('../includes/getsupervisor.php',{
+                   section:section
+                },
+            function(data){
+            
+            if (data.length > 0) {
+                $('#leader').val(data[0]); 
+                // alert(data)
+            } else {
+                $('#leader').val(''); 
+            }
+            }
+            
+            )
+            }
+        });
+
+
+
+
+
+    });
+</script>

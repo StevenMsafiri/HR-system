@@ -1,28 +1,28 @@
 <?php
 require_once './db_config.php';
 
-header("Content-Type: application/json");
+// header("Content-Type: application/json");
 
 if ($_SERVER['REQUEST_METHOD']=='GET'){
 
-// if (isset($_GET['department'])) {
-//     $department = $_GET['department'];
+    // require_once '../db_config.php';
 
-    try {
+    // header("Content-Type: application/json");
+    
+    // if (isset($_GET['section'])) {
+    //     $section = $_GET['section'];
+    
+        try {
+            $stmt = $conn->prepare("SELECT last_name FROM Employees WHERE section = ? AND position = ?");
+            $stmt->execute(['IT', 'Supervisor']);
+            $supervisors = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            echo $supervisors;
+            print_r($supervisors);
 
-        $stmt = $conn->prepare("SELECT id FROM departments WHERE name = ?");
-        $stmt->execute(['Production']);
-        $id = $stmt->fetch(PDO::FETCH_COLUMN);
-        // echo $id;
-        // echo json_encode($id);
-
-        $stmt = $conn->prepare("SELECT name FROM sections WHERE department_id = ?");
-        $stmt->execute([$id]);
-        $sections = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        // print_r($sections);
-        echo json_encode($sections);
-    } catch (PDOException $e) {
-        echo json_encode([]);
+            echo $supervisors[0];
+        } catch (PDOException $e) {
+            echo $e;
+        }
     }
-}
+// }
 ?>
