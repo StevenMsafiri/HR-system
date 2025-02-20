@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $conn = null;
         $stmt = null;
-        header("Location: ../staffs.php");
+        header("Location: ./read_staff.php");
 
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());

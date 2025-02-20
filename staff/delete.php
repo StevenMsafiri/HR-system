@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // echo $_GET['id'];
 
     if(!isset($_GET["id"])){
-        header("location: ../staffs.php");
+        header("location: ../read_staff.php");
         exit();}
 
         $id = $_GET["id"];
@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $stmt = $conn->prepare("DELETE FROM Employees WHERE id = :id");
             $stmt->execute(['id' => $id]);
-            header("location: ../staffs.php");
+            header("location: ./read_staff.php");
             exit();
              
         } catch (PDOException $e) { 

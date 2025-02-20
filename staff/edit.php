@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     //checks if the id is passed in the get request
     if(!isset($_GET["id"])){
-        header("location: ../index.php");
+        header("location: ../read_staff.php");
         exit();}
 
         $id = $_GET["id"];
@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             }else {
                 echo "No employee found.";
-                header("Location: ../staffs.php");
+                header("Location: ./read_staff.php");
                 exit();}
 
              } catch (PDOException $e) { 
@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                       position='$position', department='$depart', section='$sect', employedDate='$e_date' WHERE id = $uId";
                
                       $result = $conn->query($sql);
-                      header("Location: ../staffs.php");
+                      header("Location: ./read_staff.php");
                       die();
 
                      } catch(PDOException $error){
@@ -123,14 +123,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         <div class="input-box">
         <label for="Qualification:">Qualification:</label>
-            <select type="text" name="Qualification" style="width: 54%;">
-                <option value="certificate" class="value">Certificate</option>
-                <option value="diploma" class="value" selected>Diploma</option>
-                <option value="bachelor" class="value">Bachelor</option>
-                <option value="masters" class="value">Masters</option>
-                <option value="PhD" class="value">PhD</option>
-                <option value="other" class="value">Other</option>
-            </select>
+        <input type="text" name="Qualification" value="<?php echo $qualif?>">
         </div>
 
 
@@ -166,7 +159,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         <div class="input-box" id="btn">
             <button type="submit" id="save-btn" class="btn">Save</button>
-            <a href="../staffs.php" id="cancel-btn" class="btn"> Cancel </a>
+            <a href="./read_staff.php" id="cancel-btn" class="btn"> Cancel </a>
         </div>
 
         </div>

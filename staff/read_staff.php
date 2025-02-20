@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/staffs.css">
+    <link rel="stylesheet" href="../css/staffs.css">
     <title>Staffs</title>
 </head>
 
 <body>
     <div class="container-staff">
     <h2>List of Employees</h2>
-    <a href="./app/create.php" class="create-btn">Add Employee</a>    
+    <a href="./create.php" class="create-btn">Add Employee</a>    
         <table class="table">
             <thead>
                 <tr>
@@ -32,7 +32,7 @@
                 <?php
 
                 try {
-                    require_once "./db_config.php";
+                    require_once "../db_config.php";
 
                     $query = "SELECT * FROM Employees";
                     $data = $conn->query($query, PDO::FETCH_ASSOC);
@@ -54,8 +54,8 @@
                             <td> $row[section]</td>
                             <td> $row[position]</td>
                             <td> $row[employedDate]</td>
-                            <td> <a href='./app/edit.php?id=$row[id]' class='update-btn'>Edit</a>
-                                 <a href='./app/delete.php?id=$row[id]' class='clear-btn'>Delete</a>
+                            <td> <a href='./edit.php?id=$row[id]' class='update-btn'>Edit</a>
+                                 <a href='./delete.php?id=$row[id]' class='clear-btn'>Delete</a>
                             </td>
                             </tr>
                             </tbody>";
