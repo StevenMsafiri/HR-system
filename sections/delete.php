@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $id = $_GET["id"];
         try {
 
-            $stmt = $conn->prepare("DELETE FROM Employees WHERE id = :id");
+            $stmt = $conn->prepare("DELETE FROM sections WHERE id = :id");
             $stmt->execute(['id' => $id]);
             header("location: ./read_staff.php");
             exit();
@@ -19,6 +19,5 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         } catch (PDOException $e) { 
             die("Query failed: " . $e->getMessage());
         }
-
 }
 ?>
