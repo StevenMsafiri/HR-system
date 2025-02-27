@@ -18,9 +18,9 @@
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="#">Departments</a>
-                    <a href="#">Sections</a>
-                    <a href="#">Employees</a>
+                    <a href="./departs/read_departs.php">Departments</a>
+                    <a href="./sections/read_sections.php">Sections</a>
+                    <a href="./staff/read_staff.php">Employees</a>
                 </div>
             </div>
         </div>

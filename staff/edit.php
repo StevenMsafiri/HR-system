@@ -103,63 +103,74 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 </head>
 <body>
 <div class="container-reg">
+    <a href="./read_staff.php" " class="go-back">X</a>
     <form method="POST">
         <div class="title">Update employee <span><input type="hidden" name="id" value="<?php echo $uId?>"></span></div>
         <br>
-        <div class="employee-info">
-        <div class="input-box">
-            <label for="Firstname:">First name:</label>
-            <input type="text" name="Firstname" value="<?php echo $first?>" >
-        </div>
-        <div class="input-box">
-            <label for="Second-name:">Second name:</label>
-            <input type="text" name="Second-name" value="<?php echo $second?>">
-        </div>
-
-        <div class="input-box">
-            <label for="Lastname:"> Last name:</label>
-            <input type="text" name="Lastname" value="<?php echo $last?>">
-        </div>
-
-        <div class="input-box">
-        <label for="Qualification:">Qualification:</label>
-        <input type="text" name="Qualification" value="<?php echo $qualif?>">
+        <div class="two">
+            <div class="input-box">
+                <label for="Firstname:">First name:</label>
+                <input type="text" name="Firstname" value="<?php echo $first?>" >
+            </div>
+            <div class="input-box">
+                <label for="Second-name:">Second name:</label>
+                <input type="text" name="Second-name" value="<?php echo $second?>">
+            </div>
         </div>
 
 
-        <div class="input-box">
-            <label for="Birthdate:">Birthdate:</label>
-            <input type="text" name="Birthdate" value="<?php echo $bdate?>" >
+        <div class="two">
+            <div class="input-box">
+                <label for="Lastname:"> Last name:</label>
+                <input type="text" name="Lastname" value="<?php echo $last?>">
+            </div>
+
+            <div class="input-box">
+                <label for="Qualification:">Qualification:</label>
+                <input type="text" name="Qualification" value="<?php echo $qualif?>" id="qualify">
+            </div>
         </div>
 
-        <div class="input-box">
-            <label for="Position:"> Position:</label>
-            <input type="text" name="Position" value="<?php echo $position?>">
+
+        <div class="two">
+            <div class="input-box">
+                <label for="Birthdate:">Birthdate:</label>
+                <input type="text" name="Birthdate" value="<?php echo $bdate?>" >
+            </div>
+
+            <div class="input-box">
+                <label for="Position:"> Position:</label>
+                <input type="text" name="Position" value="<?php echo $position?>">
+            </div>
         </div>
 
-        <div class="input-box">
-            <label for="Department:">Department:</label>
-            <input type="text" name="Department" value="<?php echo $depart?>">
+        <div class="two">
+            <div class="input-box">
+                <label for="Department:">Department:</label>
+                <input type="text" name="Department" value="<?php echo $depart?>">
+            </div>
+
+            <div class="input-box">
+                <label for="Section:">Section:</label>
+                <input type="text" name="Section" value="<?php echo $sect?>">
+            </div>
         </div>
 
-        <div class="input-box">
-            <label for="Section:">Section:</label>
-            <input type="text" name="Section" value="<?php echo $sect?>">
+        <div class="two">
+            <div class="input-box">
+                <label for="Supervisor:">Supervisor:</label>
+                <input type="text" name="Supervisor" value="<?php echo "echo"?>">
+            </div>
+
+            <div class="input-box">
+                <label for="Employed-date:">Employed-date:</label>
+                <input type="text" name="Employed-date" value="<?php echo $e_date?>">
+            </div>
         </div>
 
-        <div class="input-box">
-            <label for="Supervisor:">Supervisor:</label>
-            <input type="text" name="Supervisor" value="<?php echo "echo"?>">
-        </div>
-
-        <div class="input-box">
-            <label for="Employed-date:">Employed-date:</label>
-            <input type="text" name="Employed-date" value="<?php echo $e_date?>">
-        </div>
-
-        <div class="input-box" id="btn">
-            <button type="submit" id="save-btn" class="btn">Save</button>
-            <a href="./read_staff.php" id="cancel-btn" class="btn"> Cancel </a>
+        <div class="form-actions" id="btn">
+            <button type="submit" id="create-btn" class="btn">Save</button>
+            <button type="reset">Cancel</button>
         </div>
 
         </div>

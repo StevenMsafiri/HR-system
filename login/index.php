@@ -34,7 +34,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         }
     }else{
         
-        header("Location: /login/index.php");
     }
 }
 
@@ -50,7 +49,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     <title>Login Page</title>
 </head>
 <body>
-
+<div class="logon">
 <div class="container-reg">
     <div class="title-container">
         <div class="title">
@@ -74,6 +73,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 
     </form>
 </div>
-    
+</div>    
 </body>
 </html>

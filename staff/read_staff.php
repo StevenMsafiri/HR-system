@@ -11,15 +11,15 @@
 <body>
     <div class="container-staff">
     <h2>List of Employees</h2>
-    <a href="./create.php" class="create-btn">Add Employee</a>    
+    <a href="./create.php" class="create-btn">Add Employee</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>First name</th>
-                    <th>Second name</th>
-                    <th>Last name</th>
-                    <th>Birthdate</th>
+                    <th>First Name</th>
+                    <th>Second Name</th>
+                    <th>Last Name</th>
+                    <th>Birth Date</th>
                     <th>Qualification</th>
                     <th>Department</th>
                     <th>Section</th>
